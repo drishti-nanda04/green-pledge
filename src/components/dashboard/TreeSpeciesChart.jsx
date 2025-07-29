@@ -2,14 +2,14 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, Cell } from 'recharts';
 
 const data = [
-    { species: 'Mahogany', planted: 1200, avgCO2: 0.08, area: 'Tamil Nadu', color: '#4caf50' },
-    { species: 'Banyan', planted: 800, avgCO2: 0.05, area: 'Haryana', color: '#2e7d32' },
+    { species: 'Mahogany', planted: 800, avgCO2: 0.08, area: 'Tamil Nadu', color: '#4caf50' },
+    { species: 'Banyan', planted: 1100, avgCO2: 0.05, area: 'Haryana', color: '#2e7d32' },
     { species: 'Teak', planted: 450, avgCO2: 0.07, area: 'Uttar Pradesh', color: '#81c784' },
 ];
 
 export default function TreeSpeciesChart() {
     return (
-        <ResponsiveContainer width="100%" height={250}>
+        <ResponsiveContainer width="100%" height={403}>
             <BarChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="species" />

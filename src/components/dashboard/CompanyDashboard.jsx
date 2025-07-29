@@ -1,5 +1,4 @@
 "use client";
-import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TrendingUp, Trees, AreaChart, Euro, Leaf, Award, Users, ArrowUpRight } from "lucide-react";
@@ -47,7 +46,9 @@ export default function CompanyDashboard() {
                             <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
                                 GreenCorp Ltd.
                             </h1>
-                            <span className="px-3 py-1 text-sm font-medium text-green-600 bg-green-100/50 rounded-full border border-green-100">Pro Plan</span>
+                            <span className="block text-center px-3 py-1 text-sm font-medium text-green-600 bg-green-100/50 rounded-full border border-green-100 mx-auto">
+                                Pro Plan
+                            </span>
                         </div>
                         <p className="text-gray-600 text-lg">Advanced Sustainability Plan</p>
                         <div className="flex items-center gap-4 mt-2">
@@ -61,7 +62,6 @@ export default function CompanyDashboard() {
                             </div>
                         </div>
                     </div>
-
                     <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
                         <button className="px-4 py-2 text-sm font-medium text-green-600 bg-green-100/50 rounded-xl border border-green-100 hover:bg-green-100 transition-all duration-300 hover:shadow-lg">
                             Download Report
@@ -73,7 +73,6 @@ export default function CompanyDashboard() {
                             </button>
                         </Link>
                     </div>
-
                     {/* Decorative Elements */}
                     <div className="absolute right-0 top-0 w-64 h-64 bg-green-100/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                     <div className="absolute left-0 bottom-0 w-48 h-48 bg-green-50/30 rounded-full blur-2xl -translate-x-1/2 translate-y-1/2"></div>
@@ -99,15 +98,39 @@ export default function CompanyDashboard() {
                                 value={treesPlanted}
                                 prevValue={treesPlanted - 250}
                             />
-                            <MetricCard 
-                                icon={AreaChart} 
-                                label="Hectares Restored" 
+                            <MetricCard
+                                icon={AreaChart}
+                                label="Hectares Restored"
                                 value={12}
                                 suffix="ha"
                             />
-                            <MetricCard 
-                                icon={Euro} 
-                                label="Total Invested" 
+                            <MetricCard
+                                icon={Award}
+                                label="ESG Goals Completion"
+                                value={72}
+                                suffix="%"
+                                className="lg:h-auto"
+                            />
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:hidden">
+                            <MetricCard
+                                icon={Leaf}
+                                label="Cost per Ton of CO₂"
+                                value={41216}
+                                prefix="₹"
+                                className="lg:h-auto"
+                            />
+
+                            <MetricCard
+                                icon={Users}
+                                label="Community Impact"
+                                value={28}
+                                suffix="Jobs Supported"
+                                className="lg:h-auto"
+                            />
+                            <MetricCard
+                                icon={Euro}
+                                label="Total Invested"
                                 value={850000}
                                 prefix="₹"
                             />
@@ -134,33 +157,33 @@ export default function CompanyDashboard() {
                     {/* Right Column - Additional Metrics + Timeline */}
                     <div className="col-span-12 lg:col-span-4 space-y-4 lg:space-y-6">
                         {/* Additional Metrics */}
-                        <div className="grid grid-cols-3 lg:grid-cols-1 gap-4">
-                            <MetricCard 
-                                icon={Leaf} 
-                                label="Cost per Ton of CO₂" 
+                        <div className="hidden lg:grid grid-cols-3 lg:grid-cols-1 gap-4">
+                            <MetricCard
+                                icon={Leaf}
+                                label="Cost per Ton of CO₂"
                                 value={41216}
                                 prefix="₹"
                                 className="lg:h-auto"
                             />
-                            <MetricCard 
-                                icon={Award} 
-                                label="ESG Goals Completion" 
-                                value={72}
-                                suffix="%"
-                                className="lg:h-auto"
-                            />
-                            <MetricCard 
-                                icon={Users} 
-                                label="Community Impact" 
+
+                            <MetricCard
+                                icon={Users}
+                                label="Community Impact"
                                 value={28}
                                 suffix="Jobs Supported"
                                 className="lg:h-auto"
+                            />
+                            <MetricCard
+                                icon={Euro}
+                                label="Total Invested"
+                                value={850000}
+                                prefix="₹"
                             />
                         </div>
 
                         {/* Activity Timeline */}
                         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-green-100 shadow-lg max-h-[600px] overflow-y-auto">
-                            
+
                             <div className="pr-2">
                                 <ActivityTimeline />
                             </div>
@@ -171,10 +194,8 @@ export default function CompanyDashboard() {
         </div>
     );
 }
-
 function MetricCard({ icon: Icon, label, value, prevValue, animate, prefix = "", suffix = "", className = "" }) {
     const [showArrow, setShowArrow] = useState(false);
-
     useEffect(() => {
         if (animate) {
             setShowArrow(true);
@@ -186,23 +207,30 @@ function MetricCard({ icon: Icon, label, value, prevValue, animate, prefix = "",
     const isNumber = typeof value === "number";
 
     return (
-        <div 
+        <div
             className={`
-                relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl p-6 
-                border border-green-100 shadow-lg transition-all duration-300 
-                hover:shadow-xl hover:-translate-y-0.5
-                ${animate ? "animate-pulse" : ""}
-                ${className}
-            `}
+        relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-4 
+        border border-green-100 shadow-lg transition-all duration-300 
+        hover:shadow-xl hover:-translate-y-0.5
+        ${animate ? "animate-pulse" : ""}
+        ${className}
+      `}
         >
+            {/* Decorative background blob */}
             <div className="absolute -right-6 -top-6 w-24 h-24 bg-green-100/50 rounded-full" />
-            <div className="relative flex items-start gap-4">
-                <div className="p-3 bg-green-100/50 rounded-xl">
+
+            {/* Main content */}
+            <div className="relative flex items-start gap-3 sm:gap-4 overflow-hidden">
+                {/* Icon */}
+                <div className="p-2.5 sm:p-3 bg-green-100/50 rounded-xl shrink-0">
                     <Icon className="text-green-600" size={24} />
                 </div>
-                <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                        <div className="text-2xl font-bold text-gray-800">
+
+                {/* Text content */}
+                <div className="flex-1 min-w-0 space-y-1 sm:space-y-2">
+                    {/* Value + arrow */}
+                    <div className="flex items-center gap-1.5 flex-wrap break-words">
+                        <div className="text-xl sm:text-2xl font-bold text-gray-800 break-words">
                             {prefix}
                             {isNumber ? (
                                 <CountUp
@@ -214,13 +242,21 @@ function MetricCard({ icon: Icon, label, value, prevValue, animate, prefix = "",
                             ) : (
                                 value
                             )}
-                            {" "}{suffix}
+                            {" "}
+                            {suffix}
                         </div>
                         {showArrow && (
-                            <ArrowUpRight size={20} className="text-green-500 animate-bounce" />
+                            <ArrowUpRight
+                                size={20}
+                                className="text-green-500 animate-bounce shrink-0"
+                            />
                         )}
                     </div>
-                    <div className="text-sm font-medium text-gray-500">{label}</div>
+
+                    {/* Label */}
+                    <div className="text-sm font-medium text-gray-500 break-words">
+                        {label}
+                    </div>
                 </div>
             </div>
         </div>
