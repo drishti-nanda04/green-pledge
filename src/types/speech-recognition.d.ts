@@ -1,4 +1,4 @@
-interface SpeechRecognitionEvent {
+interface SpeechRecognitionEvent extends Event {
   resultIndex: number;
   results: SpeechRecognitionResultList;
 }
@@ -7,6 +7,7 @@ interface SpeechRecognitionResultList {
   length: number;
   item(index: number): SpeechRecognitionResult;
   [index: number]: SpeechRecognitionResult;
+  [Symbol.iterator](): IterableIterator<SpeechRecognitionResult>;
 }
 
 interface SpeechRecognitionResult {
@@ -14,6 +15,7 @@ interface SpeechRecognitionResult {
   length: number;
   item(index: number): SpeechRecognitionAlternative;
   [index: number]: SpeechRecognitionAlternative;
+  [Symbol.iterator](): IterableIterator<SpeechRecognitionAlternative>;
 }
 
 interface SpeechRecognitionAlternative {
@@ -29,17 +31,21 @@ interface SpeechRecognition extends EventTarget {
   start(): void;
   stop(): void;
   abort(): void;
-  onstart: (event: Event) => void;
-  onend: (event: Event) => void;
-  onerror: (event: Event) => void;
-  onresult: (event: SpeechRecognitionEvent) => void;
-  onnomatch: (event: Event) => void;
-  onsoundstart: (event: Event) => void;
-  onsoundend: (event: Event) => void;
-  onspeechstart: (event: Event) => void;
-  onspeechend: (event: Event) => void;
-  onaudiostart: (event: Event) => void;
-  onaudioend: (event: Event) => void;
+  onstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onend: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onerror: ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any) | null;
+  onresult: ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any) | null;
+  onnomatch: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onsoundstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onsoundend: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onspeechstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onspeechend: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onaudiostart: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onaudioend: ((this: SpeechRecognition, ev: Event) => any) | null;
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+  error: string;
 }
 
 interface SpeechRecognitionConstructor {
