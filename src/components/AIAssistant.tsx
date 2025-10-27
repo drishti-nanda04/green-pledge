@@ -86,7 +86,7 @@ const ChatBotDemo = () => {
       {isOpen && (
         <div
           className={`fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 ${
-            isMinimized ? 'h-16 md:h-20' : 'h-[80vh] md:h-[600px] max-h-[600px]'
+            isMinimized ? 'h-16 md:h-20' : 'h-[80vh] md:h-[75vh] max-h-[85vh]'
           } w-[95vw] sm:w-[90vw] md:w-[400px] max-w-[400px] bg-white rounded-xl md:rounded-2xl shadow-2xl border-2 border-green-200 flex flex-col transition-all duration-300 overflow-hidden`}
         >
           {/* Header */}

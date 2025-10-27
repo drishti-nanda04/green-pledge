@@ -35,18 +35,18 @@ export default function HomeClient() {
         {/* Overlay for improved contrast */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/20 to-green-100/30 z-0" />
 
-        <div className="relative z-10 text-center px-6 py-10 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-green-900 leading-tight drop-shadow">
+        <div className="relative z-10 text-center px-4 sm:px-6 py-8 sm:py-10 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg max-w-2xl mx-4 sm:mx-6 md:mx-auto w-full">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-green-900 leading-tight drop-shadow px-2">
             Reforest the Planet, One Tree at a Time 🌿
           </h1>
 
-          <p className="mt-4 text-lg md:text-xl text-green-800">
+          <p className="mt-4 text-base sm:text-lg md:text-xl text-green-800 px-2">
             Let's grow the impact together!
           </p>
 
           <button
             onClick={() => setIsLoginModalOpen(true)}
-            className="mt-6 bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-full shadow-md transition"
+            className="mt-6 bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-full shadow-md transition transform hover:scale-105"
           >
             Login
           </button>
